@@ -2078,9 +2078,20 @@
                     iconSize: [60, 22]
                 });
 
-                const marker = L.marker(center, { icon: icon }).addTo(myMap);
+                // Compact blinking dot used when the map is zoomed out (the full label would overlap other lots)
+                const compactIcon = L.divIcon({
+                    html: `<div class="lot-marker" style="width: 18px; height: 18px; border-radius: 50%; background: #3730a3; border: 3px solid #ffffff; box-shadow: 0 0 0 2px #3730a3, 0 2px 6px rgba(0,0,0,0.4); cursor: pointer;"></div>`,
+                    className: '',
+                    iconSize: [24, 24],
+                    iconAnchor: [12, 12]
+                });
+
+                const marker = L.marker(center, { icon: icon, title: prop.lotName }).addTo(myMap);
                 marker.propertyId = prop.id;
                 marker.initialZoom = initialZoom;
+                marker.fullIcon = icon;
+                marker.compactIcon = compactIcon;
+                marker.compact = false;
                 marker.visible = true;
 
                 marker.on('click', () => {
@@ -2100,25 +2111,20 @@
                 propertyMarkers.push(marker);
             });
 
-            // Handle zoom changes to show/hide lot numbers
+            // Lot pins are always visible. When zoomed out they become a compact blinking dot
+            // so the labels of nearby lots do not pile up on top of each other.
+            const COMPACT_PIN_MAX_ZOOM = 13;
             function updateLotNumberVisibility() {
-                const currentZoom = myMap.getZoom();
-                
+                const compact = myMap.getZoom() <= COMPACT_PIN_MAX_ZOOM;
+
                 propertyMarkers.forEach(marker => {
-                    const zoomDifference = marker.initialZoom - currentZoom;
-                    
-                    if (zoomDifference >= 3) {
-                        // Hide lot number
-                        if (marker.visible) {
-                            myMap.removeLayer(marker);
-                            marker.visible = false;
-                        }
-                    } else {
-                        // Show lot number
-                        if (!marker.visible) {
-                            marker.addTo(myMap);
-                            marker.visible = true;
-                        }
+                    if (!marker.visible) {
+                        marker.addTo(myMap);
+                        marker.visible = true;
+                    }
+                    if (marker.compact !== compact) {
+                        marker.setIcon(compact ? marker.compactIcon : marker.fullIcon);
+                        marker.compact = compact;
                     }
                 });
             }
@@ -2137,6 +2143,7 @@
             }
             window.lotNumberZoomEventHandler = updateLotNumberVisibility;
             myMap.on('zoom', updateLotNumberVisibility);
+            updateLotNumberVisibility();
         }
 
         // ==================== PROPERTY FORM ====================
@@ -2849,21 +2856,12 @@
                 panelHTML += `
                     <div style="margin-bottom: 20px;">
                         <h3 style="font-size: 16px; margin-bottom: 12px;">🌐 360° Views</h3>
-                        ${view360.map(view => isPanorraUrl(view.url) ? `
-                            <button type="button" data-url="${encodeURIComponent(view.url)}" onclick="open360Embed(decodeURIComponent(this.dataset.url))"
+                        ${view360.map(view => `
+                            <button type="button" data-url="${encodeURIComponent(view.url || '')}" data-label="${encodeURIComponent(view.label || '')}"
+                               onclick="open360(decodeURIComponent(this.dataset.url), decodeURIComponent(this.dataset.label))"
                                style="display: block; width: 100%; text-align: left; padding: 10px; background: #f8fafc; border: none; border-radius: 6px; margin-bottom: 8px; color: #334155; cursor: pointer; font: inherit;">
                                 🌐 ${view.label}
                             </button>
-                        ` : getYouTubeId(view.url) ? `
-                            <button type="button" onclick="openVideoModal('${view.url}')"
-                               style="display: block; width: 100%; text-align: left; padding: 10px; background: #f8fafc; border: none; border-radius: 6px; margin-bottom: 8px; color: #334155; cursor: pointer; font: inherit;">
-                                ▶ ${view.label}
-                            </button>
-                        ` : `
-                            <a href="${view.url}" target="_blank" rel="noopener noreferrer"
-                               style="display: block; padding: 10px; background: #f8fafc; border-radius: 6px; margin-bottom: 8px; text-decoration: none; color: #334155;">
-                                📍 ${view.label}
-                            </a>
                         `).join('')}
                     </div>
                 `;
@@ -3199,21 +3197,98 @@
             }
         }
 
-        function open360Embed(url) {
+        function normalize360Url(url) {
             let raw = String(url || '').trim();
             if (raw && !/^https?:\/\//i.test(raw)) raw = 'https://' + raw;
-            let safe;
             try {
                 const u = new URL(raw);
-                if (u.protocol !== 'https:' && u.protocol !== 'http:') throw new Error('bad protocol');
-                safe = u.href;
+                if (u.protocol !== 'https:' && u.protocol !== 'http:') return null;
+                return u.href;
             } catch (e) {
+                return null;
+            }
+        }
+
+        function is360ImageUrl(href) {
+            try {
+                return /\.(jpe?g|png|webp)$/i.test(new URL(href).pathname);
+            } catch (e) {
+                return false;
+            }
+        }
+
+        // Pannellum (free 360 image viewer) is only downloaded the first time it is needed
+        let pannellumPromise = null;
+        function loadPannellum() {
+            if (window.pannellum) return Promise.resolve();
+            if (pannellumPromise) return pannellumPromise;
+            pannellumPromise = new Promise((resolve, reject) => {
+                const css = document.createElement('link');
+                css.rel = 'stylesheet';
+                css.href = 'https://cdnjs.cloudflare.com/ajax/libs/pannellum/2.5.6/pannellum.css';
+                document.head.appendChild(css);
+                const script = document.createElement('script');
+                script.src = 'https://cdnjs.cloudflare.com/ajax/libs/pannellum/2.5.6/pannellum.js';
+                script.onload = () => resolve();
+                script.onerror = () => { pannellumPromise = null; reject(new Error('viewer failed to load')); };
+                document.head.appendChild(script);
+            });
+            return pannellumPromise;
+        }
+
+        function show360Modal(innerHTML) {
+            document.getElementById('videoModalBody').innerHTML = innerHTML;
+            const modal = document.getElementById('videoModal');
+            modal.classList.add('active');
+            modal.setAttribute('aria-hidden', 'false');
+        }
+
+        // Opens any 360 link inside the page:
+        //  - YouTube 360 videos play in the video player
+        //  - direct panorama images (.jpg/.png/.webp) open in a built-in 360 viewer
+        //  - any other link (Panorra, Kuula, etc.) is shown in an embedded frame
+        function open360(url, label) {
+            if (getYouTubeId(url)) {
+                openVideoModal(url);
+                return;
+            }
+            const safe = normalize360Url(url);
+            if (!safe) {
                 showNotification('Please enter a valid 360 link', 'error');
                 return;
             }
 
-            const body = document.getElementById('videoModalBody');
-            body.innerHTML = `
+            const fallback = `
+                <p style="color:#e2e8f0;font-size:12px;text-align:center;margin-top:10px;">
+                    Blank or an error? The site may not allow embedding.
+                    <a href="${safe}" target="_blank" rel="noopener noreferrer" style="color:#93c5fd;">Open the 360 photo in a new tab</a>
+                </p>`;
+
+            if (is360ImageUrl(safe)) {
+                show360Modal(`
+                    <div style="width:100%;max-width:1000px;background:#000;border-radius:16px;overflow:hidden;box-shadow:0 16px 48px rgba(0,0,0,0.5);">
+                        <div id="pano360" style="width:100%;height:min(70vh,560px);"></div>
+                    </div>${fallback}`);
+                loadPannellum().then(() => {
+                    try {
+                        window.pannellum.viewer('pano360', {
+                            type: 'equirectangular',
+                            panorama: safe,
+                            autoLoad: true,
+                            showControls: true,
+                            compass: false,
+                            title: label || ''
+                        });
+                    } catch (e) {
+                        console.warn('360 viewer error:', e);
+                    }
+                }).catch(() => {
+                    showNotification('Could not load the 360 viewer', 'error');
+                });
+                return;
+            }
+
+            show360Modal(`
                 <div style="width:100%;max-width:1000px;background:#000;border-radius:16px;overflow:hidden;box-shadow:0 16px 48px rgba(0,0,0,0.5);">
                     <div style="width:100%;aspect-ratio:16/9;">
                         <iframe
@@ -3224,17 +3299,11 @@
                             referrerpolicy="strict-origin-when-cross-origin"
                             allowfullscreen></iframe>
                     </div>
-                </div>
-                <p style="color:#e2e8f0;font-size:12px;text-align:center;margin-top:10px;">
-                    Blank or an error? The site may not allow embedding.
-                    <a href="${safe}" target="_blank" rel="noopener noreferrer" style="color:#93c5fd;">Open the 360 photo in a new tab</a>
-                </p>
-            `;
-
-            const modal = document.getElementById('videoModal');
-            modal.classList.add('active');
-            modal.setAttribute('aria-hidden', 'false');
+                </div>${fallback}`);
         }
+
+        // Kept for older buttons
+        function open360Embed(url) { open360(url); }
 
         function closeVideoModal() {
             document.getElementById('videoModalBody').innerHTML = '';
@@ -3360,6 +3429,27 @@
                 routeLines.push(marker);
             });
 
+            // 360 photo pins: visible while the lot layout is shown; tap one to open the photo in the page
+            const pinCoords = [];
+            let views360 = [];
+            try { views360 = JSON.parse(property.view360 || '[]'); } catch (e) { views360 = []; }
+            views360.forEach(view => {
+                const lat = parseFloat(view.coords ? view.coords[0] : view.lat);
+                const lng = parseFloat(view.coords ? view.coords[1] : view.lng);
+                if (isNaN(lat) || isNaN(lng)) return;
+                pinCoords.push([lat, lng]);
+                const pinIcon = L.divIcon({
+                    html: `<div style="width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, #0ea5e9, #6366f1); color: white; border: 3px solid white; box-shadow: 0 3px 12px rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; font: 800 13px 'Inter', sans-serif; cursor: pointer;">360°</div>`,
+                    className: '',
+                    iconSize: [44, 44],
+                    iconAnchor: [22, 22]
+                });
+                const pin = L.marker([lat, lng], { icon: pinIcon, zIndexOffset: 1500, title: view.label || '360 view' }).addTo(myMap);
+                if (view.label) pin.bindTooltip(view.label, { direction: 'top', offset: [0, -22] });
+                pin.on('click', () => open360(view.url, view.label));
+                routeLines.push(pin);
+            });
+
             function createMeasurementLabels() {
                 if (!lotLayoutActive) return;
 
@@ -3426,12 +3516,14 @@
             myMap.on('zoomend', zoomHandler);
 
             // Zoom to fit the polygon perfectly
-            myMap.fitBounds(polygon, {
+            const layoutBounds = L.latLngBounds(polygon);
+            pinCoords.forEach(c => layoutBounds.extend(c));
+            myMap.fitBounds(layoutBounds, {
                 padding: [80, 80],
                 maxZoom: 20
             });
             
-            showNotification('Viewing lot layout with measurements');
+            showNotification(pinCoords.length ? 'Viewing lot layout. Tap a 360° pin to see the photo.' : 'Viewing lot layout with measurements');
         }
 
         function showDroneVideo(propertyId) {
