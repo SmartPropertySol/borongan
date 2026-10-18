@@ -1240,7 +1240,7 @@
       </div>
       <div class="form-group"><label>360�� View Points</label>
        <div class="view360-builder" id="view360Builder">
-        <div class="view360-item"><input type="text" placeholder="Label" class="view360-label"> <input type="number" step="any" placeholder="Latitude" class="view360-lat"> <input type="number" step="any" placeholder="Longitude" class="view360-lng"> <input type="text" placeholder="360 photo link (Panorra, Google Maps, etc.)" class="view360-url"> <button type="button" class="btn-remove-point" onclick="remove360Point(this)">×</button>
+        <div class="view360-item"><input type="text" placeholder="Label" class="view360-label"> <input type="number" step="any" placeholder="Latitude" class="view360-lat"> <input type="number" step="any" placeholder="Longitude" class="view360-lng"> <input type="text" placeholder="360 link, embed code, or image path (e.g. 360/lot1.jpg)" class="view360-url"> <button type="button" class="btn-remove-point" onclick="remove360Point(this)">×</button>
         </div>
        </div><button type="button" class="btn-add-point" onclick="add360Point()">+ Add 360° Point</button>
       </div>
@@ -2315,7 +2315,7 @@
                     <input type="text" placeholder="Label" class="view360-label">
                     <input type="number" step="any" placeholder="Latitude" class="view360-lat">
                     <input type="number" step="any" placeholder="Longitude" class="view360-lng">
-                    <input type="text" placeholder="360 photo link (Panorra, Google Maps, etc.)" class="view360-url">
+                    <input type="text" placeholder="360 link, embed code, or image path (e.g. 360/lot1.jpg)" class="view360-url">
                     <button type="button" class="btn-remove-point" onclick="remove360Point(this)">×</button>
                 </div>
             `;
@@ -2594,7 +2594,7 @@
                 <input type="text" placeholder="Label" class="view360-label">
                 <input type="number" step="any" placeholder="Latitude" class="view360-lat" value="${lat}">
                 <input type="number" step="any" placeholder="Longitude" class="view360-lng" value="${lng}">
-                <input type="text" placeholder="360 photo link (Panorra, Google Maps, etc.)" class="view360-url">
+                <input type="text" placeholder="360 link, embed code, or image path (e.g. 360/lot1.jpg)" class="view360-url">
                 <button type="button" class="btn-remove-point" onclick="remove360Point(this)">×</button>
             `;
             builder.appendChild(pointDiv);
@@ -2738,7 +2738,7 @@
                     <input type="text" placeholder="Label" class="view360-label" value="${view.coords ? view.label : view.label}">
                     <input type="number" step="any" placeholder="Latitude" class="view360-lat" value="${view.coords ? view.coords[0] : view.lat}">
                     <input type="number" step="any" placeholder="Longitude" class="view360-lng" value="${view.coords ? view.coords[1] : view.lng}">
-                    <input type="text" placeholder="360 photo link (Panorra, Google Maps, etc.)" class="view360-url" value="${view.url}">
+                    <input type="text" placeholder="360 link, embed code, or image path (e.g. 360/lot1.jpg)" class="view360-url" value="${view.url}">
                     <button type="button" class="btn-remove-point" onclick="remove360Point(this)">×</button>
                 `;
                 view360Builder.appendChild(pointDiv);
@@ -3197,15 +3197,49 @@
             }
         }
 
+        // Accepts: a normal link, pasted <iframe ...> embed code, or the path of an image file
+        // stored with the website (for example 360/lot1.jpg).
         function normalize360Url(url) {
             let raw = String(url || '').trim();
-            if (raw && !/^https?:\/\//i.test(raw)) raw = 'https://' + raw;
+            if (/<iframe/i.test(raw)) {
+                const m = raw.match(/src\s*=\s*["']([^"']+)["']/i);
+                if (m) raw = m[1];
+            }
+            raw = raw.replace(/&amp;/g, '&').trim();
+            if (!raw) return null;
+
+            const hasScheme = /^[a-z][a-z0-9+.-]*:/i.test(raw);
             try {
-                const u = new URL(raw);
-                if (u.protocol !== 'https:' && u.protocol !== 'http:') return null;
-                return u.href;
+                let u;
+                if (raw.startsWith('//')) {
+                    u = new URL('https:' + raw);
+                } else if (hasScheme) {
+                    u = new URL(raw);
+                } else if (/\.(jpe?g|png|webp)(\?.*)?$/i.test(raw) &&
+                           (!raw.includes('/') || !raw.split('/')[0].includes('.'))) {
+                    // An image file kept in this website's own folders
+                    u = new URL(raw, location.href);
+                } else {
+                    u = new URL('https://' + raw);
+                }
+                const okProtocol = u.protocol === 'https:' || u.protocol === 'http:' ||
+                                   (u.protocol === 'file:' && location.protocol === 'file:');
+                return okProtocol ? u.href : null;
             } catch (e) {
                 return null;
+            }
+        }
+
+        // Google refuses to show its normal Maps / Street View pages inside other websites.
+        // Only its official "Embed a map" links (/maps/embed...) are allowed.
+        function isBlockedGoogleLink(href) {
+            try {
+                const u = new URL(href);
+                const h = u.hostname.toLowerCase();
+                const isGoogle = /(^|\.)google\.[a-z.]+$/.test(h) || h === 'goo.gl' || h.endsWith('.goo.gl') || h === 'g.co';
+                return isGoogle && !u.pathname.startsWith('/maps/embed');
+            } catch (e) {
+                return false;
             }
         }
 
@@ -3255,6 +3289,24 @@
             const safe = normalize360Url(url);
             if (!safe) {
                 showNotification('Please enter a valid 360 link', 'error');
+                return;
+            }
+
+            if (isBlockedGoogleLink(safe)) {
+                show360Modal(`
+                    <div style="width:100%;max-width:520px;background:#fff;border-radius:16px;padding:24px;text-align:center;box-shadow:0 16px 48px rgba(0,0,0,0.5);font-family:'Inter',sans-serif;">
+                        <div style="font-size:40px;margin-bottom:8px;">🌐</div>
+                        <h3 style="margin:0 0 8px;color:#1e293b;">${label ? label : '360° view'}</h3>
+                        <p style="color:#475569;font-size:14px;line-height:1.5;margin:0 0 16px;">
+                            This 360 photo is hosted on Google Maps, which does not allow it to be shown inside another website.
+                        </p>
+                        <a href="${safe}" target="_blank" rel="noopener noreferrer"
+                           style="display:inline-block;background:#4285f4;color:#fff;text-decoration:none;padding:12px 20px;border-radius:10px;font-weight:700;">Open the 360 photo in Google Maps</a>
+                        <p style="color:#94a3b8;font-size:12px;line-height:1.5;margin:16px 0 0;text-align:left;">
+                            <strong>Site owner:</strong> to show it on this page, either use Google Maps → Share → <em>Embed a map</em> and paste that code in the 360 link box,
+                            or upload the 360 photo file (.jpg) to the website folder and enter its path, for example <code>360/lot1.jpg</code>.
+                        </p>
+                    </div>`);
                 return;
             }
 
