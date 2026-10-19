@@ -1,0 +1,130 @@
+{
+  "properties": [
+    {
+      "id": "prop_sample_001",
+      "lotName": "LOT 001",
+      "streetName": "Maharlika Avenue",
+      "centerLat": 11.629398216666667,
+      "centerLng": 125.42052246666668,
+      "polygon": "[[11.6290225,125.4206246],[11.6292892,125.4205039],[11.6292629,125.4204476],[11.6297792,125.4202263],[11.6299066,125.4205133],[11.6291289,125.4208191]]",
+      "area": "2,800 sqm",
+      "price": "₱2,500,000",
+      "measurements": "34m × 92m",
+      "description": "Escape the hustle and bustle without leaving city conveniences behind. This premier property offers the ultimate \"best of both worlds\" lifestyle—nestled in a tranquil, provincial setting yet located just 5 minutes away from the city proper.\nSurrounded by lush, sweeping rice fields and featuring a refreshing river nearby, the property treats you to breathtaking pastoral views, fresh open air, and a serene ambiance every single day. Whether you dream of building a peaceful provincial rest house, establishing a homestead, or starting a small-scale farming venture, this fertile and strategic land is ready to fulfill your vision.\nEnjoy the quiet, laid-back charm of countryside living while remaining mere minutes away from schools, markets, malls, and major city hubs.",
+      "utilities": "{\"electricity\":[\"ESAMELCO\"],\"water\":[\"Deepwell\",\"NAWASA\"],\"mobile\":[\"Smart\",\"Globe\"],\"internet\":[\"Smart\",\"PLDT\"],\"cable\":[\"Amboy\"]}",
+      "manualRoutes": "{\"schools\":[{\"name\":\"Eastern Samar State University\",\"destinationLat\":11.61,\"destinationLng\":125.434,\"routePoints\":[{\"lat\":11.608,\"lng\":125.433},{\"lat\":11.609,\"lng\":125.4335},{\"lat\":11.61,\"lng\":125.434}]}],\"banks\":[{\"name\":\"PNB Borongan\",\"destinationLat\":11.604,\"destinationLng\":125.432,\"routePoints\":[{\"lat\":11.608,\"lng\":125.433},{\"lat\":11.606,\"lng\":125.4325},{\"lat\":11.604,\"lng\":125.432}]}],\"stores\":[{\"name\":\"Gaisano Mall\",\"destinationLat\":11.605,\"destinationLng\":125.433,\"routePoints\":[{\"lat\":11.608,\"lng\":125.433},{\"lat\":11.6065,\"lng\":125.433},{\"lat\":11.605,\"lng\":125.433}]}],\"hospitals\":[]}",
+      "images": "https://github.com/SmartPropertySol/ESamarLots/blob/main/images/LOT001_siteplan.png?raw=true,\nhttps://github.com/SmartPropertySol/ESamarLots/blob/main/images/LOT001_siteplan2.png?raw=true,\nhttps://github.com/SmartPropertySol/ESamarLots/blob/main/images/LOT01_flood%20level.png?raw=true,\nhttps://github.com/SmartPropertySol/ESamarLots/blob/main/images/LOT01_LANDSLDE.png?raw=true,\nhttps://github.com/SmartPropertySol/ESamarLots/blob/main/images/LOT01_STORM%20SURGE.png?raw=true\n",
+      "videoUrl": "https://www.youtube.com/watch?v=SF3DgoJzkkw",
+      "walkthroughUrl": "",
+      "view360": "[{\"coords\":[11.629185,125.420596],\"label\":\"A\",\"url\":\"<iframe src=\\\"https://www.google.com/maps/embed?pb=!4v1792376565057!6m8!1m7!1sCAoSF0NJSE0wb2dLRUlDQWdJRE4yTmFiaUFF!2m2!1d11.62936022974289!2d125.4204865025047!3f197.4736236492641!4f0!5f0.7820865974627469\\\" width=\\\"800\\\" height=\\\"600\\\" style=\\\"border:0;\\\" allowfullscreen=\\\"\\\" loading=\\\"lazy\\\" referrerpolicy=\\\"strict-origin-when-cross-origin\\\"></iframe>\"}]",
+      "status": "Available",
+      "createdAt": "2026-10-18T08:29:36.452Z",
+      "updatedAt": "2026-10-19T02:23:21.086Z"
+    },
+    {
+      "id": "prop_sample_002",
+      "lotName": "LOT 002",
+      "streetName": "Rizal Street",
+      "centerLat": 11.6065,
+      "centerLng": 125.4345,
+      "polygon": "[[11.607,125.434],[11.607,125.435],[11.606,125.435],[11.606,125.434]]",
+      "area": "400 sqm",
+      "price": "₱2,000,000",
+      "measurements": "20m × 20m",
+      "description": "Corner lot with panoramic views and excellent visibility. Ideal for commercial or residential use. This property is strategically located near major establishments and offers great investment potential.",
+      "utilities": "{\"electricity\":[\"ESAMELCO\"],\"water\":[\"NAWASA\"],\"mobile\":[\"Smart\",\"Globe\",\"TNT\"],\"internet\":[\"Globe\",\"Netcamp\"],\"cable\":[\"Olog\"]}",
+      "manualRoutes": "{\"schools\":[{\"name\":\"Borongan National High School\",\"destinationLat\":11.6095,\"destinationLng\":125.4335,\"routePoints\":[{\"lat\":11.6065,\"lng\":125.4345},{\"lat\":11.608,\"lng\":125.434},{\"lat\":11.6095,\"lng\":125.4335}]}],\"banks\":[{\"name\":\"BDO Borongan\",\"destinationLat\":11.6045,\"destinationLng\":125.4325,\"routePoints\":[{\"lat\":11.6065,\"lng\":125.4345},{\"lat\":11.6055,\"lng\":125.4335},{\"lat\":11.6045,\"lng\":125.4325}]}],\"stores\":[{\"name\":\"Savemore Market\",\"destinationLat\":11.6048,\"destinationLng\":125.4335,\"routePoints\":[{\"lat\":11.6065,\"lng\":125.4345},{\"lat\":11.6056,\"lng\":125.434},{\"lat\":11.6048,\"lng\":125.4335}]}]}",
+      "images": "",
+      "videoUrl": "",
+      "walkthroughUrl": "",
+      "view360": "[]",
+      "status": "Available",
+      "createdAt": "2026-10-18T08:29:36.452Z",
+      "updatedAt": "2026-10-18T08:29:36.452Z"
+    }
+  ],
+  "utilityOptions": {
+    "electricity": [
+      "ESAMELCO",
+      "No Power Line"
+    ],
+    "water": [
+      "Deepwell",
+      "NAWASA"
+    ],
+    "mobile": [
+      "Smart",
+      "Globe",
+      "TNT"
+    ],
+    "internet": [
+      "Smart",
+      "PLDT",
+      "Globe",
+      "Netcamp"
+    ],
+    "cable": [
+      "Amboy",
+      "Olog"
+    ]
+  },
+  "destinationPoints": {
+    "schools": [
+      {
+        "name": "Eastern Samar State University",
+        "lat": 11.61,
+        "lng": 125.434,
+        "icon": "🏫",
+        "color": "#4c1d95"
+      },
+      {
+        "name": "Borongan National High School",
+        "lat": 11.6095,
+        "lng": 125.4335,
+        "icon": "🏫",
+        "color": "#4c1d95"
+      }
+    ],
+    "banks": [
+      {
+        "name": "PNB Borongan",
+        "lat": 11.604,
+        "lng": 125.432,
+        "icon": "🏦",
+        "color": "#064e3b"
+      },
+      {
+        "name": "BDO Borongan",
+        "lat": 11.6045,
+        "lng": 125.4325,
+        "icon": "🏦",
+        "color": "#064e3b"
+      }
+    ],
+    "stores": [
+      {
+        "name": "Gaisano Mall",
+        "lat": 11.605,
+        "lng": 125.433,
+        "icon": "🏬",
+        "color": "#0c2d6b"
+      },
+      {
+        "name": "Savemore Market",
+        "lat": 11.6048,
+        "lng": 125.4335,
+        "icon": "🏬",
+        "color": "#0c2d6b"
+      }
+    ],
+    "hospitals": [
+      {
+        "name": "Sample Hospital (edit name and location)",
+        "lat": 11.607,
+        "lng": 125.435,
+        "icon": "🏥",
+        "color": "#b91c1c"
+      }
+    ]
+  }
+}
