@@ -4,22 +4,22 @@
       "id": "prop_sample_001",
       "lotName": "LOT B-001",
       "streetName": "Brgy Surok, Borongan City Eastern Samar",
-      "centerLat": 11.62941095,
-      "centerLng": 125.42053343333332,
-      "polygon": "[[11.6293142,125.4205187],[11.6290219,125.4206521],[11.6291395,125.4208392],[11.6299053,125.420512],[11.6297949,125.4202196],[11.6292899,125.420459]]",
-      "area": "2,835 sqm",
+      "centerLat": 11.629398216666667,
+      "centerLng": 125.42052246666668,
+      "polygon": "[[11.6290225,125.4206246],[11.6292892,125.4205039],[11.6292629,125.4204476],[11.6297792,125.4202263],[11.6299066,125.4205133],[11.6291289,125.4208191]]",
+      "area": "2,800 sqm",
       "price": "₱2,500,000",
-      "measurements": "34m × 94m",
-      "description": "Imagine waking up to fresh air, lush greenery, and total tranquility, knowing that everything the city offers is just a quick 10-minute drive away. This rare property lets you live the relaxed provincial dream without giving up modern comforts.\nWhether you want to build a peaceful family home, start a thriving hobby farm, or work remotely from paradise, this lot is ready for your vision. Enjoy dependable electricity, high-speed internet access, and strong cellular coverage—proving you really can have it all.",
-      "utilities": "{\"electricity\":[\"ESAMELCO\"],\"water\":[\"Deepwell\"],\"mobile\":[\"Smart\",\"Globe\",\"TNT\"],\"internet\":[\"Netcamp\"],\"cable\":[\"Olog\"]}",
-      "manualRoutes": "{\"schools\":[{\"name\":\"Eastern Samar State University\",\"destinationLat\":11.61,\"destinationLng\":125.434,\"routePoints\":[{\"lat\":11.608,\"lng\":125.433},{\"lat\":11.609,\"lng\":125.4335},{\"lat\":11.61,\"lng\":125.434}]}],\"banks\":[{\"name\":\"PNB Borongan\",\"destinationLat\":11.604,\"destinationLng\":125.432,\"routePoints\":[{\"lat\":11.608,\"lng\":125.433},{\"lat\":11.606,\"lng\":125.4325},{\"lat\":11.604,\"lng\":125.432}]}],\"stores\":[{\"name\":\"Gaisano Mall\",\"destinationLat\":11.611152,\"destinationLng\":125.43318,\"routePoints\":[{\"lat\":11.608,\"lng\":125.433},{\"lat\":11.6065,\"lng\":125.433},{\"lat\":11.605,\"lng\":125.433}]}],\"hospitals\":[]}",
-      "images": "https://github.com/SmartPropertySol/ESamarLots/blob/main/images/LOT001_siteplan.png?raw=true,\nhttps://github.com/SmartPropertySol/ESamarLots/blob/main/images/LOT001_siteplan2.png?raw=true,\nhttps://github.com/SmartPropertySol/ESamarLots/blob/main/images/LOT01_LANDSLDE.png?raw=true,\nhttps://github.com/SmartPropertySol/ESamarLots/blob/main/images/LOT01_flood%20level.png?raw=true,\nhttps://github.com/SmartPropertySol/ESamarLots/blob/main/images/LOT01_STORM%20SURGE.png?raw=true",
-      "videoUrl": "https://youtu.be/SF3DgoJzkkw",
-      "walkthroughUrl": "https://www.youtube.com/watch?v=WapJBc9T4n0",
-      "view360": "[{\"coords\":[11.629469,125.420517],\"label\":\"3\",\"url\":\"<iframe src=\"},{\"coords\":[11.629191,125.420724],\"label\":\"1\",\"url\":\"<iframe src=\"},{\"coords\":[11.629283,125.420598],\"label\":\"2\",\"url\":\"<iframe src=\"},{\"coords\":[11.62966,125.420525],\"label\":\"4\",\"url\":\"<iframe src=\"}]",
+      "measurements": "34m × 92m",
+      "description": "Escape the hustle and bustle without leaving city conveniences behind. This premier property offers the ultimate \"best of both worlds\" lifestyle—nestled in a tranquil, provincial setting yet located just 5 minutes away from the city proper.\nSurrounded by lush, sweeping rice fields and featuring a refreshing river nearby, the property treats you to breathtaking pastoral views, fresh open air, and a serene ambiance every single day. Whether you dream of building a peaceful provincial rest house, establishing a homestead, or starting a small-scale farming venture, this fertile and strategic land is ready to fulfill your vision.\nEnjoy the quiet, laid-back charm of countryside living while remaining mere minutes away from schools, markets, malls, and major city hubs.",
+      "utilities": "{\"electricity\":[\"ESAMELCO\"],\"water\":[\"Deepwell\",\"NAWASA\"],\"mobile\":[\"Smart\",\"Globe\"],\"internet\":[\"Smart\",\"PLDT\"],\"cable\":[\"Amboy\"]}",
+      "manualRoutes": "{\"schools\":[{\"name\":\"St Mary College\",\"destinationLat\":11.610717,\"destinationLng\":125.437638,\"routePoints\":[{\"lat\":11.629084,\"lng\":125.420756},{\"lat\":11.629153,\"lng\":125.420876},{\"lat\":11.629279,\"lng\":125.421126},{\"lat\":11.629468,\"lng\":125.421483},{\"lat\":11.629568,\"lng\":125.421612},{\"lat\":11.62967,\"lng\":125.421657},{\"lat\":11.629909,\"lng\":125.421671},{\"lat\":11.630469,\"lng\":125.4217},{\"lat\":11.631223,\"lng\":125.421781},{\"lat\":11.631601,\"lng\":125.421762},{\"lat\":11.63188,\"lng\":125.42177},{\"lat\":11.632011,\"lng\":125.421824},{\"lat\":11.63215,\"lng\":125.422046},{\"lat\":11.632408,\"lng\":125.422703},{\"lat\":11.632607,\"lng\":125.423296},{\"lat\":11.632644,\"lng\":125.423564},{\"lat\":11.632615,\"lng\":125.423865},{\"lat\":11.632523,\"lng\":125.424154},{\"lat\":11.632331,\"lng\":125.424637},{\"lat\":11.631798,\"lng\":125.42586},{\"lat\":11.631488,\"lng\":125.426466},{\"lat\":11.631373,\"lng\":125.426837},{\"lat\":11.631436,\"lng\":125.427293},{\"lat\":11.631635,\"lng\":125.427861},{\"lat\":11.631761,\"lng\":125.428483},{\"lat\":11.631872,\"lng\":125.428956},{\"lat\":11.631866,\"lng\":125.429513},{\"lat\":11.631777,\"lng\":125.430077},{\"lat\":11.631698,\"lng\":125.430592},{\"lat\":11.63153,\"lng\":125.430956},{\"lat\":11.631409,\"lng\":125.431536},{\"lat\":11.631367,\"lng\":125.432137},{\"lat\":11.631499,\"lng\":125.432872},{\"lat\":11.631583,\"lng\":125.433794},{\"lat\":11.631567,\"lng\":125.43454},{\"lat\":11.631415,\"lng\":125.435328},{\"lat\":11.63111,\"lng\":125.436015},{\"lat\":11.630516,\"lng\":125.437136},{\"lat\":11.63018,\"lng\":125.437887},{\"lat\":11.63008,\"lng\":125.438343},{\"lat\":11.629991,\"lng\":125.438837},{\"lat\":11.629717,\"lng\":125.439411},{\"lat\":11.629339,\"lng\":125.439792},{\"lat\":11.628787,\"lng\":125.440285},{\"lat\":11.628378,\"lng\":125.440666},{\"lat\":11.6276,\"lng\":125.441165},{\"lat\":11.626996,\"lng\":125.44176},{\"lat\":11.62667,\"lng\":125.442077},{\"lat\":11.626439,\"lng\":125.442098},{\"lat\":11.626045,\"lng\":125.441632},{\"lat\":11.625698,\"lng\":125.441283},{\"lat\":11.625356,\"lng\":125.440988},{\"lat\":11.625109,\"lng\":125.440865},{\"lat\":11.624636,\"lng\":125.440907},{\"lat\":11.624064,\"lng\":125.440972},{\"lat\":11.623333,\"lng\":125.441025},{\"lat\":11.622987,\"lng\":125.440977},{\"lat\":11.622703,\"lng\":125.440789},{\"lat\":11.622298,\"lng\":125.440462},{\"lat\":11.621778,\"lng\":125.440071},{\"lat\":11.621179,\"lng\":125.439588},{\"lat\":11.620207,\"lng\":125.439743},{\"lat\":11.619608,\"lng\":125.439368},{\"lat\":11.61893,\"lng\":125.438901},{\"lat\":11.618468,\"lng\":125.438622},{\"lat\":11.617685,\"lng\":125.438375},{\"lat\":11.616965,\"lng\":125.43822},{\"lat\":11.61625,\"lng\":125.43807},{\"lat\":11.615662,\"lng\":125.437984},{\"lat\":11.615184,\"lng\":125.437893},{\"lat\":11.614537,\"lng\":125.437855},{\"lat\":11.613886,\"lng\":125.437871},{\"lat\":11.612872,\"lng\":125.437898},{\"lat\":11.612362,\"lng\":125.437893},{\"lat\":11.611684,\"lng\":125.438016},{\"lat\":11.611153,\"lng\":125.438139},{\"lat\":11.611001,\"lng\":125.43771},{\"lat\":11.610954,\"lng\":125.437549},{\"lat\":11.610617,\"lng\":125.437635}]}],\"banks\":[{\"name\":\"PNB\",\"destinationLat\":11.613699,\"destinationLng\":125.433773,\"routePoints\":[{\"lat\":11.629044,\"lng\":125.420701},{\"lat\":11.629122,\"lng\":125.420842},{\"lat\":11.629242,\"lng\":125.421054},{\"lat\":11.629386,\"lng\":125.421346},{\"lat\":11.629497,\"lng\":125.421518},{\"lat\":11.629594,\"lng\":125.421628},{\"lat\":11.629754,\"lng\":125.42166},{\"lat\":11.629943,\"lng\":125.421676},{\"lat\":11.630156,\"lng\":125.421673},{\"lat\":11.630337,\"lng\":125.421684},{\"lat\":11.630582,\"lng\":125.421746},{\"lat\":11.631031,\"lng\":125.421765},{\"lat\":11.63147,\"lng\":125.42177},{\"lat\":11.631838,\"lng\":125.42177},{\"lat\":11.631995,\"lng\":125.421816},{\"lat\":11.631995,\"lng\":125.421816},{\"lat\":11.632142,\"lng\":125.422035},{\"lat\":11.632331,\"lng\":125.422502},{\"lat\":11.632473,\"lng\":125.422875},{\"lat\":11.632565,\"lng\":125.423151},{\"lat\":11.632639,\"lng\":125.423513},{\"lat\":11.632623,\"lng\":125.423822},{\"lat\":11.632484,\"lng\":125.424238},{\"lat\":11.632308,\"lng\":125.424685},{\"lat\":11.632071,\"lng\":125.425259},{\"lat\":11.631609,\"lng\":125.426193},{\"lat\":11.631415,\"lng\":125.426692},{\"lat\":11.631367,\"lng\":125.427003},{\"lat\":11.631504,\"lng\":125.427427},{\"lat\":11.631656,\"lng\":125.427931},{\"lat\":11.631772,\"lng\":125.42851},{\"lat\":11.631803,\"lng\":125.429712},{\"lat\":11.631725,\"lng\":125.430329},{\"lat\":11.631541,\"lng\":125.430876},{\"lat\":11.631399,\"lng\":125.431659},{\"lat\":11.631462,\"lng\":125.432796},{\"lat\":11.631567,\"lng\":125.433751},{\"lat\":11.631535,\"lng\":125.434674},{\"lat\":11.631336,\"lng\":125.435532},{\"lat\":11.630842,\"lng\":125.436466},{\"lat\":11.630379,\"lng\":125.437453},{\"lat\":11.630096,\"lng\":125.438215},{\"lat\":11.629928,\"lng\":125.438976},{\"lat\":11.629581,\"lng\":125.439577},{\"lat\":11.628866,\"lng\":125.440167},{\"lat\":11.627931,\"lng\":125.44095},{\"lat\":11.627237,\"lng\":125.44153},{\"lat\":11.626754,\"lng\":125.441916},{\"lat\":11.626407,\"lng\":125.442002},{\"lat\":11.626108,\"lng\":125.441707},{\"lat\":11.625593,\"lng\":125.441203},{\"lat\":11.625314,\"lng\":125.440966},{\"lat\":11.62502,\"lng\":125.44087},{\"lat\":11.624342,\"lng\":125.44094},{\"lat\":11.62377,\"lng\":125.440988},{\"lat\":11.623349,\"lng\":125.441009},{\"lat\":11.623002,\"lng\":125.440977},{\"lat\":11.622666,\"lng\":125.440752},{\"lat\":11.622151,\"lng\":125.440355},{\"lat\":11.621321,\"lng\":125.439727},{\"lat\":11.620764,\"lng\":125.439287},{\"lat\":11.619251,\"lng\":125.438193},{\"lat\":11.617948,\"lng\":125.437346},{\"lat\":11.617212,\"lng\":125.436702},{\"lat\":11.616445,\"lng\":125.435886},{\"lat\":11.615856,\"lng\":125.435264},{\"lat\":11.615026,\"lng\":125.434663},{\"lat\":11.613949,\"lng\":125.434121},{\"lat\":11.613581,\"lng\":125.433923},{\"lat\":11.613649,\"lng\":125.433773}]}],\"stores\":[{\"name\":\"Savemore Market\",\"destinationLat\":11.613253,\"destinationLng\":125.434344,\"routePoints\":[{\"lat\":11.629078,\"lng\":125.420767},{\"lat\":11.629189,\"lng\":125.420938},{\"lat\":11.629276,\"lng\":125.421129},{\"lat\":11.629444,\"lng\":125.421432},{\"lat\":11.629531,\"lng\":125.421566},{\"lat\":11.629618,\"lng\":125.421633},{\"lat\":11.629762,\"lng\":125.42166},{\"lat\":11.630161,\"lng\":125.421681},{\"lat\":11.630555,\"lng\":125.421735},{\"lat\":11.63107,\"lng\":125.421762},{\"lat\":11.631485,\"lng\":125.421775},{\"lat\":11.631824,\"lng\":125.421778},{\"lat\":11.632035,\"lng\":125.421821},{\"lat\":11.632195,\"lng\":125.422191},{\"lat\":11.632423,\"lng\":125.422765},{\"lat\":11.632602,\"lng\":125.423307},{\"lat\":11.632644,\"lng\":125.423634},{\"lat\":11.632565,\"lng\":125.42402},{\"lat\":11.632297,\"lng\":125.424653},{\"lat\":11.632019,\"lng\":125.42542},{\"lat\":11.631593,\"lng\":125.426252},{\"lat\":11.631362,\"lng\":125.426778},{\"lat\":11.631425,\"lng\":125.42726},{\"lat\":11.631619,\"lng\":125.427797},{\"lat\":11.631777,\"lng\":125.428526},{\"lat\":11.631851,\"lng\":125.428993},{\"lat\":11.631824,\"lng\":125.429621},{\"lat\":11.631746,\"lng\":125.430168},{\"lat\":11.631693,\"lng\":125.430602},{\"lat\":11.631462,\"lng\":125.43115},{\"lat\":11.631388,\"lng\":125.431895},{\"lat\":11.631451,\"lng\":125.432603},{\"lat\":11.631562,\"lng\":125.43322},{\"lat\":11.631593,\"lng\":125.434084},{\"lat\":11.631514,\"lng\":125.434899},{\"lat\":11.631262,\"lng\":125.43572},{\"lat\":11.630542,\"lng\":125.437024},{\"lat\":11.630217,\"lng\":125.437823},{\"lat\":11.630054,\"lng\":125.438483},{\"lat\":11.629865,\"lng\":125.439073},{\"lat\":11.629528,\"lng\":125.439604},{\"lat\":11.62895,\"lng\":125.440114},{\"lat\":11.628257,\"lng\":125.440757},{\"lat\":11.627448,\"lng\":125.441342},{\"lat\":11.626854,\"lng\":125.441884},{\"lat\":11.626476,\"lng\":125.442045},{\"lat\":11.626181,\"lng\":125.441718},{\"lat\":11.625582,\"lng\":125.441203},{\"lat\":11.625241,\"lng\":125.440907},{\"lat\":11.625004,\"lng\":125.44087},{\"lat\":11.624552,\"lng\":125.440924},{\"lat\":11.624058,\"lng\":125.440966},{\"lat\":11.623591,\"lng\":125.440988},{\"lat\":11.623165,\"lng\":125.440999},{\"lat\":11.622776,\"lng\":125.440859},{\"lat\":11.622188,\"lng\":125.440387},{\"lat\":11.621489,\"lng\":125.439829},{\"lat\":11.620533,\"lng\":125.439089},{\"lat\":11.619655,\"lng\":125.438488},{\"lat\":11.618757,\"lng\":125.437898},{\"lat\":11.618142,\"lng\":125.437464},{\"lat\":11.617359,\"lng\":125.436831},{\"lat\":11.616776,\"lng\":125.436235},{\"lat\":11.616151,\"lng\":125.435511},{\"lat\":11.615467,\"lng\":125.434948},{\"lat\":11.614385,\"lng\":125.434358},{\"lat\":11.613649,\"lng\":125.433998},{\"lat\":11.613077,\"lng\":125.433682},{\"lat\":11.613029,\"lng\":125.434261}]}],\"hospitals\":[{\"name\":\"Borongan Doctors Hospital\",\"destinationLat\":11.611174,\"destinationLng\":125.433092,\"routePoints\":[{\"lat\":11.629083,\"lng\":125.420759},{\"lat\":11.629174,\"lng\":125.420912},{\"lat\":11.629292,\"lng\":125.421172},{\"lat\":11.629426,\"lng\":125.421402},{\"lat\":11.629586,\"lng\":125.421622},{\"lat\":11.629759,\"lng\":125.42166},{\"lat\":11.630001,\"lng\":125.421668},{\"lat\":11.630372,\"lng\":125.4217},{\"lat\":11.630892,\"lng\":125.421757},{\"lat\":11.631383,\"lng\":125.421765},{\"lat\":11.631662,\"lng\":125.421773},{\"lat\":11.631662,\"lng\":125.421773},{\"lat\":11.631929,\"lng\":125.421786},{\"lat\":11.632079,\"lng\":125.421912},{\"lat\":11.632565,\"lng\":125.423141},{\"lat\":11.632618,\"lng\":125.423495},{\"lat\":11.632592,\"lng\":125.423945},{\"lat\":11.63183,\"lng\":125.425833},{\"lat\":11.63142,\"lng\":125.426601},{\"lat\":11.631362,\"lng\":125.426906},{\"lat\":11.63143,\"lng\":125.427234},{\"lat\":11.631619,\"lng\":125.427749},{\"lat\":11.631782,\"lng\":125.428478},{\"lat\":11.631856,\"lng\":125.429025},{\"lat\":11.631772,\"lng\":125.429948},{\"lat\":11.631667,\"lng\":125.430651},{\"lat\":11.631467,\"lng\":125.431252},{\"lat\":11.631357,\"lng\":125.432072},{\"lat\":11.631525,\"lng\":125.433092},{\"lat\":11.631567,\"lng\":125.43424},{\"lat\":11.631436,\"lng\":125.43513},{\"lat\":11.631204,\"lng\":125.43579},{\"lat\":11.630721,\"lng\":125.436653},{\"lat\":11.630138,\"lng\":125.437936},{\"lat\":11.63008,\"lng\":125.438515},{\"lat\":11.629754,\"lng\":125.439373},{\"lat\":11.629224,\"lng\":125.439888},{\"lat\":11.628446,\"lng\":125.440607},{\"lat\":11.62719,\"lng\":125.441551},{\"lat\":11.626497,\"lng\":125.442039},{\"lat\":11.626244,\"lng\":125.441798},{\"lat\":11.625961,\"lng\":125.441535},{\"lat\":11.625609,\"lng\":125.441224},{\"lat\":11.625609,\"lng\":125.441224},{\"lat\":11.625256,\"lng\":125.440929},{\"lat\":11.624952,\"lng\":125.440865},{\"lat\":11.624242,\"lng\":125.440956},{\"lat\":11.623438,\"lng\":125.440999},{\"lat\":11.622992,\"lng\":125.440993},{\"lat\":11.622566,\"lng\":125.440682},{\"lat\":11.621258,\"lng\":125.439631},{\"lat\":11.620391,\"lng\":125.438998},{\"lat\":11.619424,\"lng\":125.438316},{\"lat\":11.618489,\"lng\":125.437694},{\"lat\":11.617811,\"lng\":125.437211},{\"lat\":11.617338,\"lng\":125.436777},{\"lat\":11.616524,\"lng\":125.435919},{\"lat\":11.615998,\"lng\":125.435393},{\"lat\":11.615609,\"lng\":125.435017},{\"lat\":11.615089,\"lng\":125.434706},{\"lat\":11.614348,\"lng\":125.434325},{\"lat\":11.613345,\"lng\":125.433826},{\"lat\":11.612026,\"lng\":125.433231},{\"lat\":11.61128,\"lng\":125.432909},{\"lat\":11.611022,\"lng\":125.432818},{\"lat\":11.610969,\"lng\":125.432939}]}]}",
+      "images": "https://github.com/SmartPropertySol/ESamarLots/blob/main/images/LOT001_siteplan.png?raw=true,\nhttps://github.com/SmartPropertySol/ESamarLots/blob/main/images/LOT001_siteplan2.png?raw=true,\nhttps://github.com/SmartPropertySol/ESamarLots/blob/main/images/LOT01_flood%20level.png?raw=true,\nhttps://github.com/SmartPropertySol/ESamarLots/blob/main/images/LOT01_LANDSLDE.png?raw=true,\nhttps://github.com/SmartPropertySol/ESamarLots/blob/main/images/LOT01_STORM%20SURGE.png?raw=true\n",
+      "videoUrl": "https://www.youtube.com/watch?v=SF3DgoJzkkw",
+      "walkthroughUrl": "https://www.youtube.com/watch?v=r7sSEZVECvI",
+      "view360": "[{\"coords\":[11.629149,125.420705],\"label\":\"A\",\"url\":\"<iframe src=\\\"https://www.google.com/maps/embed?pb=!4v1794730046112!6m8!1m7!1sCAoSHENJQUJJaENXUk5Ma2djcEowZkR1ejJVV0ZuWHY.!2m2!1d11.6291351!2d125.4206696!3f0!4f0!5f0.7820865974627469\\\" width=\\\"600\\\" height=\\\"450\\\" style=\\\"border:0;\\\" allowfullscreen=\\\"\\\" loading=\\\"lazy\\\" referrerpolicy=\\\"strict-origin-when-cross-origin\\\"></iframe>\"},{\"coords\":[11.629247,125.420598],\"label\":\"B\",\"url\":\"<iframe src=\\\"https://www.google.com/maps/embed?pb=!4v1794730059351!6m8!1m7!1sCAoSHENJQUJJaEJJYnVCMEpmUEd2RVRhRjJzTVZFMG0.!2m2!1d11.62922!2d125.4206085!3f0!4f0!5f0.7820865974627469\\\" width=\\\"600\\\" height=\\\"450\\\" style=\\\"border:0;\\\" allowfullscreen=\\\"\\\" loading=\\\"lazy\\\" referrerpolicy=\\\"strict-origin-when-cross-origin\\\"></iframe>\"},{\"coords\":[11.629452,125.420515],\"label\":\"C\",\"url\":\"<iframe src=\\\"https://www.google.com/maps/embed?pb=!4v1794730068255!6m8!1m7!1sCAoSHENJQUJJaENoRXJLWHl1dmxTNHA3SUpPRW1FSng.!2m2!1d11.629425!2d125.420517!3f0!4f0!5f0.7820865974627469\\\" width=\\\"600\\\" height=\\\"450\\\" style=\\\"border:0;\\\" allowfullscreen=\\\"\\\" loading=\\\"lazy\\\" referrerpolicy=\\\"strict-origin-when-cross-origin\\\"></iframe>\"},{\"coords\":[11.629661,125.420524],\"label\":\"D\",\"url\":\"<iframe src=\\\"https://www.google.com/maps/embed?pb=!4v1794730077303!6m8!1m7!1sCAoSHENJQUJJaEQweHJPaERuczRuNFo1SC1xYlJpX0I.!2m2!1d11.6295919!2d125.4205704!3f0!4f0!5f0.7820865974627469\\\" width=\\\"600\\\" height=\\\"450\\\" style=\\\"border:0;\\\" allowfullscreen=\\\"\\\" loading=\\\"lazy\\\" referrerpolicy=\\\"strict-origin-when-cross-origin\\\"></iframe>\"}]",
       "status": "Available",
-      "createdAt": "2026-10-17T18:46:29.306Z",
-      "updatedAt": "2026-11-15T01:37:49.124Z"
+      "createdAt": "2026-10-18T08:29:36.452Z",
+      "updatedAt": "2026-11-15T08:08:01.629Z"
     },
     {
       "id": "prop_sample_002",
@@ -39,8 +39,8 @@
       "walkthroughUrl": "",
       "view360": "[]",
       "status": "Available",
-      "createdAt": "2026-10-17T18:46:29.306Z",
-      "updatedAt": "2026-10-17T18:46:29.306Z"
+      "createdAt": "2026-10-18T08:29:36.452Z",
+      "updatedAt": "2026-10-18T08:29:36.452Z"
     }
   ],
   "utilityOptions": {
@@ -72,63 +72,56 @@
     "schools": [
       {
         "name": "Eastern Samar State University",
-        "lat": 11.61,
-        "lng": 125.434,
-        "logo": "",
+        "lat": 11.66059,
+        "lng": 125.441744,
         "icon": "🏫",
         "color": "#4c1d95"
       },
       {
-        "name": "Borongan National High School",
-        "lat": 11.6095,
-        "lng": 125.4335,
-        "logo": "",
+        "name": "St Mary College",
+        "lat": 11.610717,
+        "lng": 125.437638,
         "icon": "🏫",
         "color": "#4c1d95"
       }
     ],
     "banks": [
       {
-        "name": "PNB Borongan",
-        "lat": 11.604,
-        "lng": 125.432,
-        "logo": "",
+        "name": "PNB",
+        "lat": 11.613699,
+        "lng": 125.433773,
         "icon": "🏦",
         "color": "#064e3b"
       },
       {
-        "name": "BDO Borongan",
-        "lat": 11.6045,
-        "lng": 125.4325,
-        "logo": "",
+        "name": "MetroBank",
+        "lat": 11.612207,
+        "lng": 125.4334,
         "icon": "🏦",
         "color": "#064e3b"
       }
     ],
     "stores": [
       {
-        "name": "Gaisano Mall",
-        "lat": 11.611152,
-        "lng": 125.43318,
-        "logo": "",
+        "name": "Pure Gold",
+        "lat": 11.613229,
+        "lng": 125.43325,
         "icon": "🏬",
         "color": "#0c2d6b"
       },
       {
         "name": "Savemore Market",
-        "lat": 11.611114,
-        "lng": 125.43318,
-        "logo": "https://github.com/SmartPropertySol/ESamarLots/blob/main/images/savemore.png?raw=true",
+        "lat": 11.613253,
+        "lng": 125.434344,
         "icon": "🏬",
         "color": "#0c2d6b"
       }
     ],
     "hospitals": [
       {
-        "name": "Sample Hospital (edit name and location)",
-        "lat": 11.607,
-        "lng": 125.435,
-        "logo": "",
+        "name": "Borongan Doctors Hospital",
+        "lat": 11.611174,
+        "lng": 125.433092,
         "icon": "🏥",
         "color": "#b91c1c"
       }
