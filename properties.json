@@ -74,7 +74,7 @@
         "name": "Eastern Samar State University",
         "lat": 11.66059,
         "lng": 125.441744,
-        "logo": "",
+        "logo": "https://github.com/SmartPropertySol/ESamarLots/blob/main/images/ESSU.png?raw=true",
         "icon": "🏫",
         "color": "#4c1d95"
       },
@@ -100,7 +100,7 @@
         "name": "MetroBank",
         "lat": 11.612207,
         "lng": 125.4334,
-        "logo": "",
+        "logo": "https://github.com/SmartPropertySol/ESamarLots/blob/main/images/metrobank.png?raw=true",
         "icon": "🏦",
         "color": "#064e3b"
       }
@@ -110,7 +110,7 @@
         "name": "Pure Gold",
         "lat": 11.613229,
         "lng": 125.43325,
-        "logo": "",
+        "logo": "https://github.com/SmartPropertySol/ESamarLots/blob/main/images/puregold.png?raw=true",
         "icon": "🏬",
         "color": "#0c2d6b"
       },
