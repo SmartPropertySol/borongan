@@ -2,24 +2,24 @@
   "properties": [
     {
       "id": "prop_sample_001",
-      "lotName": "LOT 001",
-      "streetName": "Maharlika Avenue",
-      "centerLat": 11.629398216666667,
-      "centerLng": 125.42052246666668,
-      "polygon": "[[11.6290225,125.4206246],[11.6292892,125.4205039],[11.6292629,125.4204476],[11.6297792,125.4202263],[11.6299066,125.4205133],[11.6291289,125.4208191]]",
-      "area": "2,800 sqm",
+      "lotName": "LOT B-001",
+      "streetName": "Brgy Surok, Borongan City Eastern Samar",
+      "centerLat": 11.62941095,
+      "centerLng": 125.42053343333332,
+      "polygon": "[[11.6293142,125.4205187],[11.6290219,125.4206521],[11.6291395,125.4208392],[11.6299053,125.420512],[11.6297949,125.4202196],[11.6292899,125.420459]]",
+      "area": "2,835 sqm",
       "price": "₱2,500,000",
-      "measurements": "34m × 92m",
-      "description": "Escape the hustle and bustle without leaving city conveniences behind. This premier property offers the ultimate \"best of both worlds\" lifestyle—nestled in a tranquil, provincial setting yet located just 5 minutes away from the city proper.\nSurrounded by lush, sweeping rice fields and featuring a refreshing river nearby, the property treats you to breathtaking pastoral views, fresh open air, and a serene ambiance every single day. Whether you dream of building a peaceful provincial rest house, establishing a homestead, or starting a small-scale farming venture, this fertile and strategic land is ready to fulfill your vision.\nEnjoy the quiet, laid-back charm of countryside living while remaining mere minutes away from schools, markets, malls, and major city hubs.",
-      "utilities": "{\"electricity\":[\"ESAMELCO\"],\"water\":[\"Deepwell\",\"NAWASA\"],\"mobile\":[\"Smart\",\"Globe\"],\"internet\":[\"Smart\",\"PLDT\"],\"cable\":[\"Amboy\"]}",
-      "manualRoutes": "{\"schools\":[{\"name\":\"Eastern Samar State University\",\"destinationLat\":11.61,\"destinationLng\":125.434,\"routePoints\":[{\"lat\":11.608,\"lng\":125.433},{\"lat\":11.609,\"lng\":125.4335},{\"lat\":11.61,\"lng\":125.434}]}],\"banks\":[{\"name\":\"PNB Borongan\",\"destinationLat\":11.604,\"destinationLng\":125.432,\"routePoints\":[{\"lat\":11.608,\"lng\":125.433},{\"lat\":11.606,\"lng\":125.4325},{\"lat\":11.604,\"lng\":125.432}]}],\"stores\":[{\"name\":\"Gaisano Mall\",\"destinationLat\":11.605,\"destinationLng\":125.433,\"routePoints\":[{\"lat\":11.608,\"lng\":125.433},{\"lat\":11.6065,\"lng\":125.433},{\"lat\":11.605,\"lng\":125.433}]}],\"hospitals\":[]}",
-      "images": "https://github.com/SmartPropertySol/ESamarLots/blob/main/images/LOT001_siteplan.png?raw=true,\nhttps://github.com/SmartPropertySol/ESamarLots/blob/main/images/LOT001_siteplan2.png?raw=true,\nhttps://github.com/SmartPropertySol/ESamarLots/blob/main/images/LOT01_flood%20level.png?raw=true,\nhttps://github.com/SmartPropertySol/ESamarLots/blob/main/images/LOT01_LANDSLDE.png?raw=true,\nhttps://github.com/SmartPropertySol/ESamarLots/blob/main/images/LOT01_STORM%20SURGE.png?raw=true\n",
-      "videoUrl": "https://www.youtube.com/watch?v=SF3DgoJzkkw",
-      "walkthroughUrl": "",
-      "view360": "[{\"coords\":[11.629185,125.420596],\"label\":\"A\",\"url\":\"<iframe src=\\\"https://www.google.com/maps/embed?pb=!4v1792376565057!6m8!1m7!1sCAoSF0NJSE0wb2dLRUlDQWdJRE4yTmFiaUFF!2m2!1d11.62936022974289!2d125.4204865025047!3f197.4736236492641!4f0!5f0.7820865974627469\\\" width=\\\"800\\\" height=\\\"600\\\" style=\\\"border:0;\\\" allowfullscreen=\\\"\\\" loading=\\\"lazy\\\" referrerpolicy=\\\"strict-origin-when-cross-origin\\\"></iframe>\"}]",
+      "measurements": "34m × 94m",
+      "description": "Imagine waking up to fresh air, lush greenery, and total tranquility, knowing that everything the city offers is just a quick 10-minute drive away. This rare property lets you live the relaxed provincial dream without giving up modern comforts.\nWhether you want to build a peaceful family home, start a thriving hobby farm, or work remotely from paradise, this lot is ready for your vision. Enjoy dependable electricity, high-speed internet access, and strong cellular coverage—proving you really can have it all.",
+      "utilities": "{\"electricity\":[\"ESAMELCO\"],\"water\":[\"Deepwell\"],\"mobile\":[\"Smart\",\"Globe\",\"TNT\"],\"internet\":[\"Netcamp\"],\"cable\":[\"Olog\"]}",
+      "manualRoutes": "{\"schools\":[{\"name\":\"Eastern Samar State University\",\"destinationLat\":11.61,\"destinationLng\":125.434,\"routePoints\":[{\"lat\":11.608,\"lng\":125.433},{\"lat\":11.609,\"lng\":125.4335},{\"lat\":11.61,\"lng\":125.434}]}],\"banks\":[{\"name\":\"PNB Borongan\",\"destinationLat\":11.604,\"destinationLng\":125.432,\"routePoints\":[{\"lat\":11.608,\"lng\":125.433},{\"lat\":11.606,\"lng\":125.4325},{\"lat\":11.604,\"lng\":125.432}]}],\"stores\":[{\"name\":\"Gaisano Mall\",\"destinationLat\":11.611152,\"destinationLng\":125.43318,\"routePoints\":[{\"lat\":11.608,\"lng\":125.433},{\"lat\":11.6065,\"lng\":125.433},{\"lat\":11.605,\"lng\":125.433}]}],\"hospitals\":[]}",
+      "images": "https://github.com/SmartPropertySol/ESamarLots/blob/main/images/LOT001_siteplan.png?raw=true,\nhttps://github.com/SmartPropertySol/ESamarLots/blob/main/images/LOT001_siteplan2.png?raw=true,\nhttps://github.com/SmartPropertySol/ESamarLots/blob/main/images/LOT01_LANDSLDE.png?raw=true,\nhttps://github.com/SmartPropertySol/ESamarLots/blob/main/images/LOT01_flood%20level.png?raw=true,\nhttps://github.com/SmartPropertySol/ESamarLots/blob/main/images/LOT01_STORM%20SURGE.png?raw=true",
+      "videoUrl": "https://youtu.be/SF3DgoJzkkw",
+      "walkthroughUrl": "https://www.youtube.com/watch?v=WapJBc9T4n0",
+      "view360": "[{\"coords\":[11.629469,125.420517],\"label\":\"3\",\"url\":\"<iframe src=\"},{\"coords\":[11.629191,125.420724],\"label\":\"1\",\"url\":\"<iframe src=\"},{\"coords\":[11.629283,125.420598],\"label\":\"2\",\"url\":\"<iframe src=\"},{\"coords\":[11.62966,125.420525],\"label\":\"4\",\"url\":\"<iframe src=\"}]",
       "status": "Available",
-      "createdAt": "2026-10-18T08:29:36.452Z",
-      "updatedAt": "2026-10-19T02:23:21.086Z"
+      "createdAt": "2026-10-17T18:46:29.306Z",
+      "updatedAt": "2026-11-15T01:37:49.124Z"
     },
     {
       "id": "prop_sample_002",
@@ -39,8 +39,8 @@
       "walkthroughUrl": "",
       "view360": "[]",
       "status": "Available",
-      "createdAt": "2026-10-18T08:29:36.452Z",
-      "updatedAt": "2026-10-18T08:29:36.452Z"
+      "createdAt": "2026-10-17T18:46:29.306Z",
+      "updatedAt": "2026-10-17T18:46:29.306Z"
     }
   ],
   "utilityOptions": {
@@ -74,6 +74,7 @@
         "name": "Eastern Samar State University",
         "lat": 11.61,
         "lng": 125.434,
+        "logo": "",
         "icon": "🏫",
         "color": "#4c1d95"
       },
@@ -81,6 +82,7 @@
         "name": "Borongan National High School",
         "lat": 11.6095,
         "lng": 125.4335,
+        "logo": "",
         "icon": "🏫",
         "color": "#4c1d95"
       }
@@ -90,6 +92,7 @@
         "name": "PNB Borongan",
         "lat": 11.604,
         "lng": 125.432,
+        "logo": "",
         "icon": "🏦",
         "color": "#064e3b"
       },
@@ -97,6 +100,7 @@
         "name": "BDO Borongan",
         "lat": 11.6045,
         "lng": 125.4325,
+        "logo": "",
         "icon": "🏦",
         "color": "#064e3b"
       }
@@ -104,15 +108,17 @@
     "stores": [
       {
         "name": "Gaisano Mall",
-        "lat": 11.605,
-        "lng": 125.433,
+        "lat": 11.611152,
+        "lng": 125.43318,
+        "logo": "",
         "icon": "🏬",
         "color": "#0c2d6b"
       },
       {
         "name": "Savemore Market",
-        "lat": 11.6048,
-        "lng": 125.4335,
+        "lat": 11.611114,
+        "lng": 125.43318,
+        "logo": "https://github.com/SmartPropertySol/ESamarLots/blob/main/images/savemore.png?raw=true",
         "icon": "🏬",
         "color": "#0c2d6b"
       }
@@ -122,6 +128,7 @@
         "name": "Sample Hospital (edit name and location)",
         "lat": 11.607,
         "lng": 125.435,
+        "logo": "",
         "icon": "🏥",
         "color": "#b91c1c"
       }
