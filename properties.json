@@ -74,6 +74,7 @@
         "name": "Eastern Samar State University",
         "lat": 11.66059,
         "lng": 125.441744,
+        "logo": "",
         "icon": "🏫",
         "color": "#4c1d95"
       },
@@ -81,6 +82,7 @@
         "name": "St Mary College",
         "lat": 11.610717,
         "lng": 125.437638,
+        "logo": "https://github.com/SmartPropertySol/ESamarLots/blob/main/images/St%20Mary.png?raw=true",
         "icon": "🏫",
         "color": "#4c1d95"
       }
@@ -90,6 +92,7 @@
         "name": "PNB",
         "lat": 11.613699,
         "lng": 125.433773,
+        "logo": "https://github.com/SmartPropertySol/ESamarLots/blob/main/images/PNB.png?raw=true",
         "icon": "🏦",
         "color": "#064e3b"
       },
@@ -97,6 +100,7 @@
         "name": "MetroBank",
         "lat": 11.612207,
         "lng": 125.4334,
+        "logo": "",
         "icon": "🏦",
         "color": "#064e3b"
       }
@@ -106,6 +110,7 @@
         "name": "Pure Gold",
         "lat": 11.613229,
         "lng": 125.43325,
+        "logo": "",
         "icon": "🏬",
         "color": "#0c2d6b"
       },
@@ -113,6 +118,7 @@
         "name": "Savemore Market",
         "lat": 11.613253,
         "lng": 125.434344,
+        "logo": "https://github.com/SmartPropertySol/ESamarLots/blob/main/images/savemore.png?raw=true",
         "icon": "🏬",
         "color": "#0c2d6b"
       }
@@ -122,6 +128,7 @@
         "name": "Borongan Doctors Hospital",
         "lat": 11.611174,
         "lng": 125.433092,
+        "logo": "https://github.com/SmartPropertySol/ESamarLots/blob/main/images/bordoc.png?raw=true",
         "icon": "🏥",
         "color": "#b91c1c"
       }
