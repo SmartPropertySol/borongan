@@ -1144,7 +1144,24 @@
     .trace-toolbar button { border: 0; border-radius: 8px; padding: 10px 18px; font-weight: 700; cursor: pointer; font-size: 14px; margin: 0 4px; background: #f1f5f9; color: #334155; }
     .trace-toolbar button.trace-finish { background: #16a34a; color: #fff; }
   </style>
- </head>
+   <meta property="og:type" content="website">
+  <meta property="og:title" content="Lots for sale in Eastern Samar">
+  <meta property="og:description" content="See lot photos, drone views, measurements and the map before you visit.">
+  <style>
+    .share-modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); align-items: center; justify-content: center; z-index: 4000; padding: 14px; }
+    .share-modal.active { display: flex; }
+    .share-box { background: #fff; border-radius: 18px; padding: 20px; width: min(430px, 100%); position: relative; font-family: 'Inter', sans-serif; max-height: 92vh; overflow: auto; }
+    .share-box h3 { margin: 0 0 6px; color: #1e293b; font-size: 20px; padding-right: 36px; }
+    .share-sub { color: #64748b; font-size: 14px; margin: 0 0 12px; line-height: 1.4; }
+    .share-box input { width: 100%; padding: 12px; border: 2px solid #e2e8f0; border-radius: 10px; font-size: 14px; margin-bottom: 12px; }
+    .share-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .share-grid button { padding: 14px 8px; border: 2px solid #e2e8f0; background: #f8fafc; border-radius: 12px; font-size: 15px; font-weight: 600; cursor: pointer; min-height: 52px; }
+    .share-grid button:active { background: #e0f2fe; }
+    .share-note { font-size: 13px; color: #16a34a; margin: 12px 0 0; min-height: 18px; font-weight: 600; }
+    .share-x { position: absolute; top: 10px; right: 10px; width: 40px; height: 40px; border-radius: 50%; border: 0; background: #f1f5f9; font-size: 22px; cursor: pointer; }
+    @media (max-width: 768px) { .share-modal { padding: 0; align-items: flex-end; } .share-box { border-radius: 22px 22px 0 0; padding-bottom: calc(24px + env(safe-area-inset-bottom)); } }
+  </style>
+</head>
  <body>
   <div class="top-nav"><button class="nav-icon" onclick="goHome()" title="Home">🏠</button> <button class="nav-icon" onclick="showPasswordPrompt()" title="Admin Access">🔐</button>
   </div>
@@ -1188,6 +1205,10 @@
     </div>
    </div>
   </div>
+  <div class="share-modal" id="shareModal" onclick="if (event.target === this) closeShare()">
+    <div class="share-box"><button class="share-x" onclick="closeShare()" aria-label="Close">×</button><div id="shareBody"></div></div>
+  </div>
+
   <div class="password-modal" id="passwordModal">
    <div class="password-box">
     <h3>🔐 Admin Access</h3>
@@ -1773,6 +1794,8 @@
             loadProperties();
             initBoundaryTracer();
             initLogoPopups();
+            openLotFromHash();
+            window.addEventListener('hashchange', openLotFromHash);
         }
 
         function addDestinationMarkers() {
@@ -2923,6 +2946,9 @@
                         <button onclick="showRoutes('${property.id}')" style="padding: 14px; background: linear-gradient(135deg, #16a34a 0%, #15803d 100%); color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 14px;">
                             🗺️ Routes
                         </button>
+                        <button onclick="shareLot('${property.id}')" style="grid-column: 1 / -1; padding: 14px; background: linear-gradient(135deg, #0099ff 0%, #a033ff 100%); color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 15px;">
+                            📤 Share this lot
+                        </button>
                     </div>
 
                     <div style="margin-bottom: 20px;">
@@ -2956,18 +2982,6 @@
                                      onerror="console.error('Image failed to load:', this.src); this.style.background='#e5e7eb'; this.alt='Image unavailable';">
                             `).join('')}
                         </div>
-                    </div>
-                `;
-            }
-
-            if (property.walkthroughUrl) {
-                panelHTML += `
-                    <div style="margin-bottom: 20px;">
-                        <h3 style="font-size: 16px; margin-bottom: 12px;">🚶 Walkthrough</h3>
-                        <button onclick="openVideoModal('${property.walkthroughUrl}')" 
-                                style="width: 100%; padding: 12px; background: #0284c7; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600;">
-                            Watch Walkthrough
-                        </button>
                     </div>
                 `;
             }
@@ -3025,6 +3039,66 @@
                 else if (dy > 30) panel.classList.remove('expanded');
             }, { passive: true });
         })();
+
+        // ==================== SHARE A LOT ====================
+        let shareCtx = null;
+        function lotShareUrl(id) {
+            const base = location.protocol === 'file:' ? location.href.split('#')[0] : location.origin + location.pathname;
+            return base + '#lot=' + encodeURIComponent(id);
+        }
+        function lotShareText(p) {
+            return p.lotName + ': ' + [p.area, p.price, p.streetName].filter(Boolean).join(', ') + '. See the photos, drone view and map:';
+        }
+        function copyToClipboard(t) {
+            try { navigator.clipboard.writeText(t); }
+            catch (e) { const a = document.createElement('textarea'); a.value = t; document.body.appendChild(a); a.select(); try { document.execCommand('copy'); } catch (x) {} a.remove(); }
+        }
+        async function shareLot(id) {
+            const p = allProperties.find(x => x.id === id); if (!p) return;
+            const url = lotShareUrl(id), text = lotShareText(p);
+            if (navigator.share) {      // phones: the normal share sheet, which lists Messenger, Viber, WhatsApp and more
+                try { await navigator.share({title: p.lotName + ' for sale', text: text, url: url}); return; }
+                catch (e) { if (e && e.name === 'AbortError') return; }
+            }
+            openShareDialog(p, url, text);
+        }
+        function openShareDialog(p, url, text) {
+            shareCtx = {title: p.lotName + ' for sale', url: url, text: text, full: text + ' ' + url, mobile: /Android|iPhone|iPad|iPod/i.test(navigator.userAgent)};
+            document.getElementById('shareBody').innerHTML = `
+                <h3>Share ${escHtml(p.lotName)}</h3>
+                <p class="share-sub">${escHtml(text)}</p>
+                <input id="shareLink" readonly value="${escHtml(url)}" onclick="this.select()">
+                <div class="share-grid">
+                    <button onclick="shareVia('copy')">📋 Copy link</button>
+                    <button onclick="shareVia('messenger')">💬 Messenger</button>
+                    <button onclick="shareVia('sms')">✉️ Text message</button>
+                    <button onclick="shareVia('whatsapp')">🟢 WhatsApp</button>
+                    <button onclick="shareVia('facebook')">📘 Facebook</button>
+                    <button onclick="shareVia('email')">📧 Email</button>
+                </div>
+                <p class="share-note" id="shareNote"></p>`;
+            document.getElementById('shareModal').classList.add('active');
+        }
+        function closeShare() { document.getElementById('shareModal').classList.remove('active'); }
+        function shareVia(kind) {
+            const c = shareCtx, enc = encodeURIComponent, note = document.getElementById('shareNote');
+            if (kind === 'copy') { copyToClipboard(c.full); note.textContent = 'Copied! Paste it in a chat with your friend.'; }
+            else if (kind === 'messenger') {
+                copyToClipboard(c.full);
+                if (c.mobile) { note.textContent = 'Opening Messenger. If the link is not filled in, paste it: it is copied.'; window.location.href = 'fb-messenger://share/?link=' + enc(c.url); }
+                else { note.textContent = 'Message copied. Paste it into the chat with your friend.'; window.open('https://www.messenger.com/', '_blank', 'noopener'); }
+            }
+            else if (kind === 'sms') { window.location.href = 'sms:?&body=' + enc(c.full); }
+            else if (kind === 'whatsapp') { window.open('https://wa.me/?text=' + enc(c.full), '_blank', 'noopener'); }
+            else if (kind === 'facebook') { window.open('https://www.facebook.com/sharer/sharer.php?u=' + enc(c.url), '_blank', 'noopener'); }
+            else if (kind === 'email') { window.location.href = 'mailto:?subject=' + enc(c.title) + '&body=' + enc(c.full); }
+        }
+        // A shared link ends in #lot=ID. Opening it shows that lot straight away.
+        function openLotFromHash() {
+            const m = location.hash.match(/^#lot=(.+)$/); if (!m) return;
+            const id = decodeURIComponent(m[1]);
+            if (allProperties.some(x => x.id === id) && !(currentProperty && currentProperty.id === id)) viewProperty(id);
+        }
 
         function closePropertyPanel() {
             document.getElementById('propertyPanel').classList.remove('active');
