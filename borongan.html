@@ -1100,10 +1100,10 @@
     
         /* ===== Destination hover card with logo ===== */
         .dest-popup .leaflet-popup-content-wrapper { border-radius: 14px; padding: 2px; }
-        .dest-popup .leaflet-popup-content { margin: 10px 12px; }
+        .dest-popup .leaflet-popup-content { margin: 8px 14px; }
         .dest-pop { min-width: 0; text-align: center; font-family: 'Inter', sans-serif; }
         .dest-pop .dest-logo { display: block; width: 100%; max-width: 170px; height: 56px; object-fit: contain; margin: 0 auto 8px; }
-        .dest-pop strong { display: block; font-size: 14px; color: #1e293b; line-height: 1.3; }
+        .dest-pop strong { display: block; white-space: nowrap; font-size: 14px; color: #1e293b; line-height: 1.3; }
         .dest-pop span { display: block; font-size: 11px; color: #64748b; margin-top: 2px; letter-spacing: .3px; }
         .location-row .loc-logo { grid-column: 1 / -1; }
             .logo-badge { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 50%; background: #fff; border: 1px solid #e2e8f0; box-shadow: 0 1px 4px rgba(0,0,0,0.12); flex-shrink: 0; overflow: hidden; font-size: 22px; line-height: 1; }
@@ -2096,7 +2096,7 @@
 
                     preloadLogo(logoFor(dest), () => { if (destinationMarkers.length) { clearTimeout(window._pinRedraw); window._pinRedraw = setTimeout(createMarkers, 50); } });
                     const marker = L.marker([offsetLat, offsetLng], { icon: icon })
-                        .bindPopup(() => destPopupHtml(dest), { className: 'dest-popup', minWidth: 150, closeButton: false })
+                        .bindPopup(() => destPopupHtml(dest), { className: 'dest-popup', minWidth: 20, maxWidth: 280, closeButton: false })
                         .on('mouseover', function() { this.openPopup(); })
                         .on('mouseout', function() { this.closePopup(); })
                         .addTo(myMap);
