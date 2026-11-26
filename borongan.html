@@ -401,21 +401,35 @@
             transform: translateY(-2px);
         }
 
+        /* Left side, so it never covers Admin, Home or the contact card on the right.
+           top: just under the zoom + / - buttons.  bottom: just above the Aerial / Street map control. */
         #propertyPanel {
             position: fixed;
-            right: -600px;
-            top: 0;
-            width: 600px;
-            height: 100%;
+            left: 16px;
+            right: auto;
+            top: 92px;
+            bottom: 72px;
+            width: min(520px, calc(100vw - 32px));
             background: white;
-            box-shadow: -4px 0 20px rgba(0, 0, 0, 0.2);
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
             z-index: 2000;
             overflow-y: auto;
-            transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateX(calc(-100% - 40px));
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         #propertyPanel.active {
-            right: 0;
+            transform: translateX(0);
+        }
+
+        /* keep the Aerial / Street map list visible even when it opens upward */
+        .leaflet-bottom.leaflet-left { z-index: 2100; }
+
+        /* the routes list moves to the right so it does not sit on top of the pop-up */
+        @media (min-width: 769px) {
+            .routes-modal { left: auto; right: 20px; top: 96px; }
+            .routes-content { max-height: max(200px, calc(100vh - 390px)); animation: none; }
         }
 
         .close-panel {
@@ -1054,18 +1068,17 @@
 
         @media (max-width: 768px) {
             #propertyPanel {
-                left: 0; right: 0; top: auto; bottom: 0; width: 100%;
-                height: 52vh; height: 52dvh;
-                border-radius: 18px 18px 0 0;
+                left: 8px; right: 8px; top: auto; bottom: calc(68px + env(safe-area-inset-bottom)); width: auto;
+                height: calc(50vh - 68px); height: calc(50dvh - 68px);
+                border-radius: 18px;
                 box-shadow: 0 -6px 24px rgba(0, 0, 0, 0.25);
-                transform: translateY(105%);
+                transform: translateY(calc(100% + 120px));
                 transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), height 0.3s ease;
-                padding-bottom: env(safe-area-inset-bottom);
                 overscroll-behavior: contain;
                 -webkit-overflow-scrolling: touch;
             }
-            #propertyPanel.active { right: 0; transform: translateY(0); }
-            #propertyPanel.expanded { height: 92vh; height: 92dvh; }
+            #propertyPanel.active { right: 8px; transform: translateY(0); }
+            #propertyPanel.expanded { height: calc(100vh - 160px); height: calc(100dvh - 160px); }
             .sheet-handle { display: block; }
             .close-panel {
                 width: 40px; height: 40px; margin: 6px 10px 0 0; border-radius: 50%;
@@ -1794,6 +1807,7 @@
             loadProperties();
             initBoundaryTracer();
             initLogoPopups();
+            initMunicipalityMenu();
             openLotFromHash();
             window.addEventListener('hashchange', openLotFromHash);
         }
@@ -1839,6 +1853,119 @@
         }
 
         // Rebuild the Locations form from the saved destinations (so logos and edits are kept)
+        // ==================== MUNICIPALITY MENU (Eastern Samar) ====================
+        // Town-centre coordinates from Wikipedia (city/town hall area). Borongan City first, the rest A to Z.
+        const MUNICIPALITIES = [
+            ['Borongan City', 11.6115, 125.4331, 'Capital'], ['Arteche', 12.2693, 125.3712], ['Balangiga', 11.1074, 125.3874],
+            ['Balangkayan', 11.4727, 125.5104], ['Can-avid', 11.9968, 125.4485], ['Dolores', 12.0374, 125.4825],
+            ['General MacArthur', 11.2450, 125.5393], ['Giporlos', 11.1210, 125.4489], ['Guiuan', 11.0323, 125.7245],
+            ['Hernani', 11.3233, 125.6192], ['Jipapad', 12.2860, 125.2352], ['Lawaan', 11.1403, 125.3009],
+            ['Llorente', 11.4114, 125.5459], ['Maslog', 12.1578, 125.2471], ['Maydolong', 11.5010, 125.5019],
+            ['Mercedes', 11.0986, 125.7103], ['Oras', 12.1410, 125.4408], ['Quinapondan', 11.1574, 125.5209],
+            ['Salcedo', 11.1488, 125.6626], ['San Julian', 11.7542, 125.4544], ['San Policarpo', 12.1795, 125.5087],
+            ['Sulat', 11.8122, 125.4522], ['Taft', 11.9049, 125.4164]];
+        const MUNI_ZOOM = 14;
+
+        function kmBetween(lat1, lng1, lat2, lng2) {
+            const r = Math.PI / 180, dLat = (lat2 - lat1) * r, dLng = (lng2 - lng1) * r;
+            const h = Math.sin(dLat / 2) ** 2 + Math.cos(lat1 * r) * Math.cos(lat2 * r) * Math.sin(dLng / 2) ** 2;
+            return 12742 * Math.asin(Math.sqrt(h));
+        }
+        function nearestMunicipality(lat, lng, maxKm) {
+            let best = null, bd = Infinity;
+            MUNICIPALITIES.forEach(m => { const d = kmBetween(lat, lng, m[1], m[2]); if (d < bd) { bd = d; best = m; } });
+            return bd <= maxKm ? best : null;
+        }
+
+        function initMunicipalityMenu() {
+            if (document.getElementById('muniBar')) return;
+            const css = document.createElement('style');
+            css.textContent = `
+                #muniBar { position: fixed; top: 16px; left: 50%; transform: translateX(-50%); z-index: 1700; font-family: 'Inter', sans-serif; }
+                #muniBtn { display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.97); border: 0; border-radius: 999px; padding: 11px 18px 11px 14px;
+                    box-shadow: 0 4px 18px rgba(0,0,0,0.3); font-weight: 700; font-size: 15px; color: #1e293b; cursor: pointer; min-height: 46px; }
+                #muniBtn:hover { background: #fff; }
+                #muniBtn .mc { transition: transform .2s; font-size: 12px; }
+                #muniBtn[aria-expanded="true"] .mc { transform: rotate(180deg); }
+                #muniPanel { position: absolute; top: 56px; left: 50%; transform: translateX(-50%); width: min(500px, 92vw); background: #fff; border-radius: 18px;
+                    box-shadow: 0 14px 40px rgba(0,0,0,0.35); padding: 12px; max-height: 72vh; overflow: auto; overscroll-behavior: contain; }
+                #muniPanel[hidden] { display: none; }
+                #muniPanel .mhead { display: flex; gap: 8px; position: sticky; top: -12px; background: #fff; padding: 12px 0 10px; margin-top: -12px; z-index: 1; }
+                #muniSearch { flex: 1; min-width: 0; padding: 11px 14px; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 16px; }
+                #muniClose { width: 46px; border: 0; background: #f1f5f9; border-radius: 12px; font-size: 22px; cursor: pointer; }
+                #muniPanel .mgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+                #muniPanel .mgrid button { padding: 11px 12px; border: 2px solid #e2e8f0; background: #f8fafc; border-radius: 12px; font-size: 15px; font-weight: 600;
+                    color: #1e293b; cursor: pointer; text-align: left; min-height: 48px; }
+                #muniPanel .mgrid button:hover { background: #e0f2fe; border-color: #7dd3fc; }
+                #muniPanel .mgrid button[aria-selected="true"] { background: #1e293b; color: #fff; border-color: #1e293b; }
+                #muniPanel .mgrid small { display: block; font-weight: 500; font-size: 11px; opacity: .7; }
+                #muniPanel .mnone { color: #64748b; padding: 12px 4px; margin: 0; }
+                @media (max-width: 768px) {
+                    #muniBar { left: 56px; right: 112px; transform: none; top: 12px; }
+                    #muniBtn { width: 100%; justify-content: space-between; padding: 10px 14px 10px 12px; min-height: 44px; }
+                    #muniBtn #muniLabel { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; flex: 1; text-align: left; }
+                    #muniPanel { position: fixed; top: 64px; left: 10px; right: 10px; width: auto; transform: none; max-height: calc(100vh - 150px); }
+                }`;
+            document.head.appendChild(css);
+
+            const bar = document.createElement('div');
+            bar.id = 'muniBar';
+            bar.innerHTML = `
+                <button id="muniBtn" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="muniPanel">
+                    <span aria-hidden="true">📍</span><span id="muniLabel">Borongan City</span><span class="mc" aria-hidden="true">▼</span>
+                </button>
+                <div id="muniPanel" hidden>
+                    <div class="mhead"><input id="muniSearch" type="search" placeholder="Find a municipality..." autocomplete="off" aria-label="Find a municipality">
+                        <button id="muniClose" type="button" aria-label="Close">×</button></div>
+                    <div class="mgrid" id="muniGrid"></div>
+                    <p class="mnone" id="muniNone" hidden>No municipality matches.</p>
+                </div>`;
+            document.body.appendChild(bar);
+
+            const btn = document.getElementById('muniBtn'), panel = document.getElementById('muniPanel'), grid = document.getElementById('muniGrid'),
+                  label = document.getElementById('muniLabel'), search = document.getElementById('muniSearch'), none = document.getElementById('muniNone');
+            let current = 'Borongan City';
+
+            grid.innerHTML = MUNICIPALITIES.map(m =>
+                `<button type="button" data-muni="${escHtml(m[0])}" aria-selected="${m[0] === current}">${escHtml(m[0])}${m[3] ? '<small>' + escHtml(m[3]) + '</small>' : ''}</button>`).join('');
+
+            function setCurrent(name) {
+                current = name; label.textContent = name;
+                grid.querySelectorAll('button').forEach(b => b.setAttribute('aria-selected', String(b.dataset.muni === name)));
+            }
+            function openPanel() {
+                panel.hidden = false; btn.setAttribute('aria-expanded', 'true'); search.value = ''; filter('');
+                if (!isPhoneLayout()) search.focus();
+            }
+            function closePanel() { panel.hidden = true; btn.setAttribute('aria-expanded', 'false'); }
+            function filter(q) {
+                q = q.trim().toLowerCase(); let shown = 0;
+                grid.querySelectorAll('button').forEach(b => { const ok = !q || b.dataset.muni.toLowerCase().indexOf(q) >= 0; b.hidden = !ok; if (ok) shown++; });
+                none.hidden = shown > 0;
+            }
+            function go(name) {
+                const m = MUNICIPALITIES.find(x => x[0] === name); if (!m) return;
+                if (typeof closePropertyPanel === 'function') { try { closePropertyPanel(); } catch (e) {} }
+                setCurrent(m[0]); closePanel();
+                myMap.flyTo([m[1], m[2]], MUNI_ZOOM, {duration: 1.4});
+                showNotification(m[0] + ', Eastern Samar');
+            }
+
+            btn.addEventListener('click', () => { panel.hidden ? openPanel() : closePanel(); });
+            document.getElementById('muniClose').addEventListener('click', closePanel);
+            search.addEventListener('input', () => filter(search.value));
+            search.addEventListener('keydown', e => { if (e.key === 'Enter') { const f = Array.from(grid.querySelectorAll('button')).find(b => !b.hidden); if (f) go(f.dataset.muni); } });
+            grid.addEventListener('click', e => { const b = e.target.closest('[data-muni]'); if (b) go(b.dataset.muni); });
+            document.addEventListener('click', e => { if (!panel.hidden && !bar.contains(e.target)) closePanel(); });
+            document.addEventListener('keydown', e => { if (e.key === 'Escape' && !panel.hidden) { closePanel(); btn.focus(); } });
+
+            // keep the label honest when you pan or open a lot somewhere else
+            myMap.on('moveend', () => {
+                const c = myMap.getCenter(), m = nearestMunicipality(c.lat, c.lng, 12);
+                setCurrent(m ? m[0] : 'Eastern Samar');
+            });
+        }
+
         function initLogoPopups() {
             myMap.on('popupopen', function(e) {
                 const el = e.popup.getElement(); if (!el) return;
